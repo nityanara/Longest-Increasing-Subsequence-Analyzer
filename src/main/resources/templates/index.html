@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LIS Analyzer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+        }
+
+        .main {
+            display: flex;
+            min-height: 100vh; /* 🔥 allows page to grow */
+        }
+
+        /* LEFT SIDE */
+        .left {
+            width: 50%;
+            padding: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog {
+            max-width: 500px;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            line-height: 1.6;
+        }
+
+        .blog h2 {
+            color: #38bdf8;
+            margin-top: 0;
+        }
+
+        .highlight {
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        /* RIGHT SIDE */
+        .right {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 85%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 12px #38bdf8;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+        <div class="blog">
+
+            <h2>💡 What is LIS?</h2>
+
+            <p>
+                The <span class="highlight">Longest Increasing Subsequence (LIS)</span>
+                is a core problem in <span class="highlight">Dynamic Programming</span>.
+            </p>
+
+            <p>
+                It finds the longest subsequence in a sequence such that
+                all elements are strictly increasing.
+            </p>
+
+            <p>
+                Example:
+                <br>
+                Input → <span class="highlight">3 10 2 1 20</span><br>
+                LIS → <span class="highlight">3 10 20</span>
+            </p>
+
+            <h2>⚙️ Logic Used</h2>
+
+            <p>
+                This project uses Java-based logic with:
+            </p>
+
+            <ul>
+                <li>📌 Dynamic Programming (O(n²))</li>
+                <li>⚡ Optimized Binary Search (O(n log n))</li>
+            </ul>
+
+            <p>
+                The algorithm works by tracking increasing sequences
+                and updating the best possible subsequence at each step.
+            </p>
+
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+        <div class="container">
+            <h1>📈 LIS Analyzer</h1>
+
+            <form action="/analyze" method="post">
+                <input type="text" name="numbers" placeholder="Enter numbers (e.g. 3, 10, 2, 1, 20)" required>
+                <br>
+                <button type="submit">Analyze</button>
+            </form>
+
+            <div class="result" th:if="${lis}">
+                <p><b>LIS:</b> <span th:text="${lis}"></span></p>
+                <p><b>Length:</b> <span th:text="${length}"></span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
